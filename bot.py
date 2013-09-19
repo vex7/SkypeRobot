@@ -29,11 +29,11 @@ answers = ['yes', 'right', 'mhm', '[YOUR AD HERE!]', 'k', 'kk', "yes, that's com
 
 # PROBABILTY TO RESPOND to a non-question-message – it's your choice. 
 # 100 ==> everytime, smaller or equal to 0 ==> never
-probability = 50
+probability = 70
 
 # TIME SPAN TO WAIT with your answer after you received a message (in seconds)
-wait_min = 1
-wait_max = 2
+wait_min = 3
+wait_max = 9
 
 """
 END OF CONFIGURATION SECTION. If you don't know what you're doing, you should not change the below part. 
