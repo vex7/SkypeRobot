@@ -16,7 +16,7 @@ CONFIGURE THE BOT BELOW
 # TARGET USERNAMES (Skype-names of persons you don't want to chat with)
 # put your set of target Skype-names into the square brackets like this:
 # each answer into quotes, followed by a comma, exept in the end 
-targets = ['annoyinguser1781', 'kiddie1787', 'spamm0rdude1819']
+targets = ['annoyinguser1781', 'kiddie1787', 'spamm0rdude1819', 'bleedingbromine']
 
 # LIST OF ANSWERS to chose from if the incoming message ends with a question mark: "?"
 # be careful when using single/double quotation marks resp. apostrophes! If you want to use them, 
@@ -112,6 +112,8 @@ def OnMessageStatus(Message, Status):
 			
 			if not answer == "": 
 				# one of the above conditions was true, so we want to send an answer
+				target_labels[target_index].setStyleSheet("QLabel {background-color: #88ee00}")
+				target_labels[target_index].setText("answering")
 				
 				waiting_time = random.randint(wait_min, wait_max)
 				print ("Waiting for %s seconds." % (waiting_time))
@@ -122,6 +124,9 @@ def OnMessageStatus(Message, Status):
 				last_answers[target_index] = cur_millis()
 				print ("Sent this answer at millis:     %s" % (last_answers[target_index]))
 				print ("Done.")
+				
+				target_labels[target_index].setText(contact)
+				target_labels[target_index].setStyleSheet("QLabel {background-color: none}")
 				
 				
 # declare up the Qt-Application
@@ -136,16 +141,43 @@ s.OnMessageStatus = OnMessageStatus
 last_answers = []
 for t in targets:
 	last_answers.append(0)
+	
+	
 
 # design the window, show it
 widget = QtGui.QWidget()
-widget.setGeometry(300, 300, 300, 150)
 widget.setWindowTitle('Skype Autoresponse Bot')
+widget.setGeometry(200, 200, 400, 100)
 
-label = QtGui.QLabel('Skype-Bot is running', widget)
-label.move(85, 50)
+
+grid = QtGui.QGridLayout()
+
+# standard line of information
+head_label = QtGui.QLabel('Skype-Bot is running on these contacts:\n\n', widget)
+grid.addWidget(head_label, 0, 0)
+
+# list all the targeted 
+i = 1
+target_labels = []
+for t in targets:
+	#global i
+	target_labels.append(QtGui.QLabel(t, widget))
+	grid.addWidget(target_labels[-1], i, 0)
+	i += 1
+	
+# standard line ofinformation
+bottom_label = QtGui.QLabel('\n\nClose window to quit the bot.', widget)
+grid.addWidget(bottom_label, i+1, 0)
+
+widget.setLayout(grid)
+
 
 widget.show()
+
+
+
+
+
 
 
 # quit application when window is closed
