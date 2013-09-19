@@ -128,7 +128,7 @@ def OnMessageStatus(Message, Status):
 				target_labels[target_index].setText(contact)
 				
 				
-# declare up the Qt-Application
+# declare the Qt-Application
 app = QtGui.QApplication(sys.argv)
 
 # set up the Skype-interface
