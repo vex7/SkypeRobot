@@ -136,7 +136,7 @@ s = Skype4Py.Skype()
 s.Attach()
 s.OnMessageStatus = OnMessageStatus
 
-# this list will hold the last answer we have sent, for each target respectively
+# this list will hold the timestamp of the last answer we have sent, for each target respectively
 last_answers = []
 for t in targets:
 	last_answers.append(0)
