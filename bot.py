@@ -16,7 +16,7 @@ CONFIGURE THE BOT BELOW
 # TARGET USERNAMES (Skype-names of persons you don't want to chat with)
 # put your set of target Skype-names into the square brackets like this:
 # each answer into quotes, followed by a comma, exept in the end 
-targets = ['annoyinguser1781', 'kiddie1787', 'spamm0rdude1819', 'bleedingbromine']
+targets = ['yourfirsttarget1991', 'yoursecondtarget59', 'andSoOn']
 
 # LIST OF ANSWERS to chose from if the incoming message ends with a question mark: "?"
 # be careful when using single/double quotation marks resp. apostrophes! If you want to use them, 
@@ -113,7 +113,7 @@ def OnMessageStatus(Message, Status):
 			if not answer == "": 
 				# one of the above conditions was true, so we want to send an answer
 				target_labels[target_index].setStyleSheet("QLabel {background-color: #88ee00}")
-				target_labels[target_index].setText("answering")
+				target_labels[target_index].setText(contact+" [sending an answer]")
 				
 				waiting_time = random.randint(wait_min, wait_max)
 				print ("Waiting for %s seconds." % (waiting_time))
