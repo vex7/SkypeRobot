@@ -113,10 +113,9 @@ def OnMessageStatus(Message, Status):
 			
 			if not answer == "": 
 				# one of the above conditions was true, so we want to send an answer
-				#target_labels[target_index].setStyleSheet("QLabel {background-color: #88ee00}")
-				target_labels[target_index].setText(contact+" [sending an answer]")
 				
 				waiting_time = random.randint(wait_min, wait_max)
+				target_labels[target_index].setText(contact+" [waiting %s seconds to reply]" % (waiting_time))
 				print ("Waiting for %s seconds." % (waiting_time))
 				time.sleep(waiting_time)
 				
@@ -127,7 +126,6 @@ def OnMessageStatus(Message, Status):
 				print ("Done.")
 				
 				target_labels[target_index].setText(contact)
-				#target_labels[target_index].setStyleSheet("QLabel {background-color: none}")
 				
 				
 # declare up the Qt-Application
@@ -157,27 +155,21 @@ grid = QtGui.QGridLayout()
 head_label = QtGui.QLabel('Skype-Bot is running on these contacts:\n\n', widget)
 grid.addWidget(head_label, 0, 0)
 
-# list all the targeted 
-i = 1
+# list all the targeted skype-names
+i = 0
 target_labels = []
 for t in targets:
-	#global i
+	i += 1
 	target_labels.append(QtGui.QLabel(t, widget))
 	grid.addWidget(target_labels[-1], i, 0)
-	i += 1
 	
 # standard line ofinformation
 bottom_label = QtGui.QLabel('\n\nClose window to quit the bot.', widget)
 grid.addWidget(bottom_label, i+1, 0)
 
+# complete the window
 widget.setLayout(grid)
-
-
 widget.show()
-
-
-
-
 
 
 
