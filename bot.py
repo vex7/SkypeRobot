@@ -95,7 +95,8 @@ def OnMessageStatus(Message, Status):
 			# note: the random int goes only up to 99, as otherwise zero-result would be possible even if probability=100
 			p = probability - random.randint(0, 99)
 			
-			if content[-1:] == "?":
+			#if content[-1:] == "?":
+			if '?' in content:
 				# it's a question, we are gonna respond in any case
 				answer = question_answers[random.randint(0, (len(question_answers)-1))]
 				print ("Answering a question:           %s" % (answer))
@@ -112,7 +113,7 @@ def OnMessageStatus(Message, Status):
 			
 			if not answer == "": 
 				# one of the above conditions was true, so we want to send an answer
-				target_labels[target_index].setStyleSheet("QLabel {background-color: #88ee00}")
+				#target_labels[target_index].setStyleSheet("QLabel {background-color: #88ee00}")
 				target_labels[target_index].setText(contact+" [sending an answer]")
 				
 				waiting_time = random.randint(wait_min, wait_max)
@@ -126,7 +127,7 @@ def OnMessageStatus(Message, Status):
 				print ("Done.")
 				
 				target_labels[target_index].setText(contact)
-				target_labels[target_index].setStyleSheet("QLabel {background-color: none}")
+				#target_labels[target_index].setStyleSheet("QLabel {background-color: none}")
 				
 				
 # declare up the Qt-Application
